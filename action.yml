@@ -1,0 +1,21 @@
+name: "Deploy Yosys & oss-cad-suite"
+description: "Install & add oss-cad-suite to PATH, including Yosys, SymbiYosys and so on."
+author: "kazutoiris"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download Latest Release Zip
+      uses: XAMPPRocky/get-github-release@v1
+      with:
+        matches: oss-cad-suite-linux-x64
+        owner: YosysHQ
+        repo: oss-cad-suite-build
+        token: "${{ github.token }}"
+
+    - run: echo "/tmp/oss-cad-suite/bin" >> $GITHUB_PATH
+      shell: bash
+
+branding:
+  icon: "refresh-ccw"
+  color: "green"
